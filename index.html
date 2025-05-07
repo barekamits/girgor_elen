@@ -1,0 +1,727 @@
+ <!DOCTYPE html> 
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grigor & Elen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+  <style>
+@font-face {
+  font-family: 'Vrdznagir';
+  src: url('Vrdznagir.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Vrdznagir', sans-serif;
+    }
+
+    .card {
+      width: 430px;
+      height: 287px;
+      margin-top: 84px;
+      background: 
+        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+        url('https://assets.onecompiler.app/43gpeysj6/43gs6aw3x/cd44c532fb38c8bbb277944ca3316358ea08f70b.jpg') center/cover;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 143px;
+      border-bottom-right-radius: 143px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+
+
+    .names, .date {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1.2s ease forwards;
+    }
+
+    .names {
+      font-family: 'Sacramento', cursive;
+      font-size: 3rem;
+      margin: 0;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+      animation-delay: 0.3s;
+    }
+
+    .date {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      animation-delay: 0.6s;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .invitation-text {
+      font-family: 'Vrdznagir';
+      width: 355px;
+      height: auto;
+      margin-top: 20px;
+      font-size: 19.71px;
+      line-height: 1.2;
+      text-align: center;
+      color: #000;
+    }
+
+.bottom-image {
+  width: 430px;
+  height: 400px; /* Փոփոխված, որպեսզի տեղ լինի կալենդարի համար */
+  margin-top: 20px;
+  background: url('https://assets.onecompiler.app/43gpeysj6/43gs6aw3x/cc5749218340a2dbbc91451930823431a9bd503c.jpg') center/cover no-repeat;
+  border-radius: 60.04px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  position: relative; /* կարևոր է */
+  color: white;
+  overflow: hidden; /* որ դուրս չգա */
+}
+
+.calendar {
+  position: absolute;
+  width: 302px;
+  height: 259px;
+  top: 80px;
+  left: 59px;
+  color: white;
+  font-family: 'Sacramento', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar .month {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.calendar .weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.calendar .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-family: sans-serif;
+  font-size: 16px;
+  text-align: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.calendar .days div {
+  padding: 4px;
+}
+
+.heart {
+  background: url('data:image/svg+xml;utf8,<svg fill="red" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.4,2.1-7.6,5.1C14.8,2.1,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,5.6,5.6,10.2,14.1,17.3l1.9,1.6l1.9-1.6 C26.4,18.6,32,14,32,8.4C32,3.8,28.2,0,23.6,0z"/></svg>') no-repeat center;
+  background-size: 20px;
+  color: transparent;
+  width: 100%;
+  height: 20px;
+}
+ 
+
+.event-start {
+  margin-top:40px;
+  width: 261px;
+  height: 42px;
+  top: 812px;
+  left: 85px;
+  font-family: 'Vrdznagir', sans-serif;
+  font-weight: 400;
+  font-size: 36.22px;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-align: center;
+  color: black; /* Կարող ես փոխել այս գույնը */
+}
+
+.groom-house {
+  margin-top:20px;
+  width:123 px;
+  height: 28px;
+  top: 854px;
+  left: 154px;
+  font-family: 'Vrdznagir', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 26px; /* Փոքրացնելու համար  */
+  line-height: 100%;
+  letter-spacing: 0;
+  text-align: center;
+  color: black;
+  z-index: 10;
+  white-space: nowrap; 
+}
+
+.event-time {
+ 
+ margin-top:10px;
+  width: 62px;
+  height: 37px;
+  font-family:'Vrdznagir', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 36.22px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: black;
+}
+
+.vector-heart {
+  width: 61.41px;
+  height: 73.69px;
+  left: 195.36px;
+  top: 920px;
+  transform: rotate(16.04deg);
+  background: url('data:image/svg+xml;utf8,<svg fill="pink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.4,2.1-7.6,5.1C14.8,2.1,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,5.6,5.6,10.2,14.1,17.3l1.9,1.6l1.9-1.6C26.4,18.6,32,14,32,8.4C32,3.8,28.2,0,23.6,0z"/></svg>') no-repeat center;
+  background-size: contain;
+}
+
+.bride-event {
+  width: 196px;
+  height: 84px;
+  top: 1015px;
+  left: 117px;
+
+  font-family: 'Vrdznagir', sans-serif;
+  font-weight: 400;
+  font-size: 36.22px;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-align: center;
+  color: black;
+}
+
+.bride-time {
+  margin-top:10px;
+  width: 66px;
+  height: 37px;
+  top: 1107px;
+  left: 178px;
+
+  font-family: 'Vrdznagir', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 36.22px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: black;
+}
+
+.heart2 {
+  width: 61.41px;
+  height: 73.69px;
+  left: 195.36px;
+  top: 920px;
+  transform: rotate(16.04deg);
+  background: url('data:image/svg+xml;utf8,<svg fill="pink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.4,2.1-7.6,5.1C14.8,2.1,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,5.6,5.6,10.2,14.1,17.3l1.9,1.6l1.9-1.6C26.4,18.6,32,14,32,8.4C32,3.8,28.2,0,23.6,0z"/></svg>') no-repeat center;
+  background-size: contain;
+}
+
+.wedding-text {
+
+  width: 222px;
+  height: 42px;
+  top: 1230px;
+  left: 105px;
+
+  font-family: 'Vrdznagir', sans-serif;
+  font-weight: 400;
+  font-size: 36.22px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: black;
+}
+
+.saghmosavank-text {
+  
+  width: 143px;
+  height: 30px;
+  top: 1280px;
+  left: 140px;
+
+  font-family:  'Vrdznagir', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 29.27px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: black;
+}
+
+.time-text {
+  
+  width: 66px;
+  height: 37px;
+  top: 1317px;
+  left: 178px;
+
+  font-family:  'Vrdznagir', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 36.22px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: black;
+}
+
+
+.image-container {
+  width: 343px;
+  height: 429px;
+  border-radius: 89px;
+  overflow: hidden;
+  position: relative;
+  margin-top: 20px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-container .overlay-text {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-family: 'Sacramento', cursive;
+  font-size: 2.5rem;
+  text-align: center;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.go-button-container {
+  font-family: 'Vrdznagir';
+  font-weight: 400;
+  font-size: 47.44px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  text-decoration: underline;
+  background: #FFFFFF;
+  color: white;
+  text-decoration-style: solid;
+  text-decoration: 0%;
+  text-decoration-thickness: 0%;
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #AC1F40;
+  border-radius: 15.28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 138px;
+  height: 73px;
+}
+.heart3 {
+  width: 61.41px;
+  height: 73.69px;
+  left: 195.36px;
+  top: 920px;
+  transform: rotate(16.04deg);
+  background: url('data:image/svg+xml;utf8,<svg fill="pink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.4,2.1-7.6,5.1C14.8,2.1,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,5.6,5.6,10.2,14.1,17.3l1.9,1.6l1.9-1.6C26.4,18.6,32,14,32,8.4C32,3.8,28.2,0,23.6,0z"/></svg>') no-repeat center;
+  background-size: contain;
+}
+
+.groom-house2 {
+
+  width:123 px;
+  height: 28px;
+  top: 854px;
+  left: 154px;
+  font-family: 'Vrdznagir', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 40px; /* Փոքրացնելու համար  */
+  line-height: 100%;
+  letter-spacing: 0;
+  text-align: center;
+  color: black;
+  z-index: 10;
+  white-space: nowrap; 
+}
+.event-time2 {
+  margin-top: 17px; 
+  width: 62px;
+  height: 37px;
+  font-family:'Vrdznagir', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 36.22px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: black;
+}
+.heart4 {
+  width: 61.41px;
+  height: 73.69px;
+  left: 195.36px;
+  top: 920px;
+  transform: rotate(16.04deg);
+  background: url('data:image/svg+xml;utf8,<svg fill="pink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.4,2.1-7.6,5.1C14.8,2.1,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,5.6,5.6,10.2,14.1,17.3l1.9,1.6l1.9-1.6C26.4,18.6,32,14,32,8.4C32,3.8,28.2,0,23.6,0z"/></svg>') no-repeat center;
+  background-size: contain;
+}
+
+.bridal-fest {
+
+  width:123 px;
+  height: 28px;
+  top: 854px;
+  left: 154px;
+  font-family: 'Vrdznagir', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 35px; /* Փոքրացնելու համար  */
+  line-height: 100%;
+  letter-spacing: 0;
+  text-align: center;
+  color: black;
+  z-index: 10;
+  white-space: nowrap; 
+}
+
+.restuarant {
+  margin-top:40px;
+  width: 223px;
+  height: 46px;
+  top: 2230px;
+  left: 105px;
+  font-family: 'Vrdznagir'; 
+  font-weight: 400;
+  font-style: italic;
+  font-size: 22.95px;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-align: center;
+}
+.event-time3 {
+  margin-top: 17px; 
+  width: 62px;
+  height: 37px;
+  font-family:'Vrdznagir', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 36.22px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: black;
+}
+.image-container2 {
+  width: 343px;
+  height: 429px;
+  border-radius: 89px;
+  overflow: hidden;
+  position: relative;
+  margin-top: 20px; 
+}
+
+.image-container2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-container2 .overlay-text {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-family: 'Sacramento', cursive;
+  font-size: 2.5rem;
+  text-align: center;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.go-button-container2 {
+  font-family: Vrdznagir;
+  font-weight: 400;
+  font-size: 47.44px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  text-decoration: underline;
+  background: #FFFFFF;
+  color: white;
+  text-decoration-style: solid;
+  text-decoration: 0%;
+  text-decoration-thickness: 0%;
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #AC1F40;
+  border-radius: 15.28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 138px;
+  height: 73px;
+}
+.heart5 {
+  width: 61.41px;
+  height: 73.69px;
+  left: 195.36px;
+  top: 920px;
+  transform: rotate(16.04deg);
+  background: url('data:image/svg+xml;utf8,<svg fill="pink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.4,2.1-7.6,5.1C14.8,2.1,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,5.6,5.6,10.2,14.1,17.3l1.9,1.6l1.9-1.6C26.4,18.6,32,14,32,8.4C32,3.8,28.2,0,23.6,0z"/></svg>') no-repeat center;
+  background-size: contain;
+}
+
+.image-container-custom {
+  position: relative;
+  width: 430px;
+  height: 645px;
+  margin: 40px auto 0; /* վերևից հեռավորություն և կենտրոնացում */
+  border-top-left-radius: 90px;
+  border-top-right-radius: 90px;
+  overflow: hidden;
+}
+
+.image-container-custom img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-top-left-radius: 90px;
+  border-top-right-radius: 90px;
+}
+
+.text-overlay-custom {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: "Vrdznagir", sans-serif;
+  font-weight: 400;
+  font-size: 29.32px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: white; 
+  padding: 10px;
+}
+.vector-heart-final {
+  width: 39.05px;
+  height: 46.94px;
+  position: absolute;
+  top: 240px;
+  left: 165px;
+  transform: rotate(-40.63deg);
+  background: url('data:image/svg+xml;utf8,<svg fill="pink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.4,2.1-7.6,5.1C14.8,2.1,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,5.6,5.6,10.2,14.1,17.3l1.9,1.6l1.9-1.6C26.4,18.6,32,14,32,8.4C32,3.8,28.2,0,23.6,0z"/></svg>') no-repeat center;
+  background-size: contain;
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1 class="names">Grigor & Elen</h1>
+    <p class="date">Օգոստոսի 28, 2025</p>
+  </div>
+
+  <div class="invitation-text">
+    Սիրելիներս սիրով ուզում ենք 
+    Ձեզ հետ կիսել բոլորիս կողմից երկար սպասված,<br>
+    մեր կյանքի կարևորագույն արարողությունը
+    հարսանյաց հանդեսը:
+  </div>
+  
+
+<div class="bottom-image">
+  <div class="calendar">
+    <div class="month">August</div>
+    <div class="weekdays">
+      <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+    </div>
+    <div class="days">
+      <div>   </div><div>   </div><div>   </div><div>   </div><div>1</div><div>2</div><div>3</div>
+      <div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div>
+      <div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div><div>17</div>
+      <div>18</div><div>19</div><div>20</div><div>21</div><div>22</div><div>23</div><div>24</div>
+      <div>25</div><div>26</div><div>27</div><div>28</div><div class="heart">29</div><div>30</div><div>31</div>
+    </div>
+  </div>
+</div>
+</div> 
+<div class="event-start">Միջոցառման սկիզբ</div>
+<div class="groom-house">Փեսայի տուն</div>
+
+<div class="event-time">11:00</div>
+
+
+<div class="vector-heart"></div>
+<div class="bride-event">Հարսի տան<br>արարողություն</div>
+<div class="bride-time">12:00</div>
+<div class="heart2"></div>
+<div class="wedding-text">Պսակադրություն</div>
+<div class="saghmosavank-text">Սաղմոսավանք</div>
+<div class="time-text">14:20</div>
+
+  <div class="image-container">
+    <img src="https://assets.onecompiler.app/43gpeysj6/43gs6aw3x/f0dd1842fb2291dfeb948523c895c99e27f001e5.jpg" alt="Image description">
+     <div class="go-button-container">
+       <span class="go-button">Գնալ</span>
+  </div>
+  </div>
+
+<script type="text/javascript" charset="utf-8">
+    document.querySelector('.go-button').addEventListener('click', function() {
+        // Create the map modal
+        const mapModal = document.createElement('div');
+        mapModal.style.position = 'fixed';
+        mapModal.style.top = '0';
+        mapModal.style.left = '0';
+        mapModal.style.width = '100vw';
+        mapModal.style.height = '100vh';
+        mapModal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        mapModal.style.zIndex = '1000';
+
+        // Create the iframe for Google Maps
+        const iframe = document.createElement('iframe');
+        iframe.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6078.508796574977!2d44.394051499999996!3d40.381054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406a83a69eed55f7%3A0x1fd9410486e7669!2sSaghmosavan!5e0!3m2!1sen!2sam!4v1746398428269!5m2!1sen!2sam";
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = 'none';
+
+        // Append iframe to the modal
+        mapModal.appendChild(iframe);
+
+        // Add a close button to close the map modal
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'Close';
+        closeButton.style.position = 'absolute';
+        closeButton.style.top = '20px';
+        closeButton.style.right = '20px';
+        closeButton.style.backgroundColor = 'white';
+        closeButton.style.border = 'none';
+        closeButton.style.padding = '10px';
+        closeButton.style.cursor = 'pointer';
+        
+        closeButton.addEventListener('click', function() {
+            mapModal.remove(); // Remove the modal when the close button is clicked
+        });
+
+        mapModal.appendChild(closeButton);
+        
+        // Append the modal to the body
+        document.body.appendChild(mapModal);
+    });
+</script>
+
+<div class="heart3"></div>
+<div class="groom-house2">Փեսայի տուն</div>
+
+<div class="event-time2">16:30</div>
+<div class="heart4"></div>
+<div class="bridal-fest">Հարսանեկան խնջույք</div>
+<div class="restuarant">Հրաշք Այգի  Ռեստորանային  Համալիր</div>
+<div class="event-time3">17:30</div>
+ <div class="image-container2">
+    <img src="https://assets.onecompiler.app/43gpeysj6/43gspqy24/182765173_2740209479529041_8741023888127056283_n.jpg">
+     <div class="go-button-container2">
+       <span class="go-button2">Գնալ</span>
+       </div>
+  </div>
+<script type="text/javascript" charset="utf-8">
+    document.querySelector('.go-button2').addEventListener('click', function() {
+        // Create the map modal
+        const mapModal = document.createElement('div');
+        mapModal.style.position = 'fixed';
+        mapModal.style.top = '0';
+        mapModal.style.left = '0';
+        mapModal.style.width = '100vw';
+        mapModal.style.height = '100vh';
+        mapModal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        mapModal.style.zIndex = '1000';
+
+        // Create the iframe for Google Maps
+        const iframe = document.createElement('iframe');
+        iframe.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3054.3989012098177!2d44.4999461!3d40.044198099999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406ac8622e1f5d8f%3A0x3a7b42ae323a51e0!2zwqvVgNWQ1LHVh9WUINSx1YXUs9S7wrs!5e0!3m2!1sen!2sam!4v1746406661572!5m2!1sen!2sam";
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = 'none';
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute('loading', 'lazy');
+        iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+
+        // Append iframe to the modal
+        mapModal.appendChild(iframe);
+
+        // Add a close button to close the map modal
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'Close';
+        closeButton.style.position = 'absolute';
+        closeButton.style.top = '20px';
+        closeButton.style.right = '20px';
+        closeButton.style.backgroundColor = 'white';
+        closeButton.style.border = 'none';
+        closeButton.style.padding = '10px';
+        closeButton.style.cursor = 'pointer';
+        
+        closeButton.addEventListener('click', function() {
+            mapModal.remove(); // Remove the modal when the close button is clicked
+        });
+
+        mapModal.appendChild(closeButton);
+        
+        // Append the modal to the body
+        document.body.appendChild(mapModal);
+    });
+</script>
+<div class="heart5"></div>
+<div class="image-container-custom">
+  <img src="https://assets.onecompiler.app/43gpeysj6/43gspqy24/7d5a31d2eb27b7da84d8f9e1b6fd895c129d1dad.jpg" alt="Your image description">
+  <div class="text-overlay-custom">
+    <p>Սիրով սպասում ենք բոլորիդ <br>Շնորհակալ ենք <br>Ձեր թանկ ներկայությամբ <br>մեր նոր կյանքի սկիզբը <br>գեղեցիկ ազդարարելու համար:</p>
+  </div>
+  <div class="vector-heart-final"></div>
+</div>
+
+
+</body>
+</html>                  
