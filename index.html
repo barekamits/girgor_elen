@@ -12,7 +12,10 @@
   font-weight: normal;
   font-style: normal;
 }
-
+html, body {
+  overflow-x: hidden;  /* ❌ Հեռացնում է հորիզոնական scroll-ը */
+  overscroll-behavior-x: none; /* կանխում է մոբայլում ձախ-աջ bounce */
+}
 * {
       margin: 0;
       padding: 0;
